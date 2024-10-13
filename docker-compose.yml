@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres-db
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: mydatabase
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - neredekal-network
+    ports:
+      - "5432:5432"
+
+networks:
+  neredekal-network:
+    driver: bridge
+
+volumes:
+  postgres_data:

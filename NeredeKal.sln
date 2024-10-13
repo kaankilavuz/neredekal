@@ -1,0 +1,75 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shared", "shared", "{89C6B633-201E-4E31-9FC9-91FB41E6BC43}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeredeKal.SharedKernel", "shared\NeredeKal.SharedKernel\NeredeKal.SharedKernel.csproj", "{827A7922-A235-4774-A80A-010A1E4DCCDE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{FBCF7AF8-E6B9-49F5-B0F5-A8B2B83DE2EE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "hotel-service", "hotel-service", "{0CE11E15-B9E7-4A67-9407-8006B6A9718D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2089FD17-3847-4C46-AA4E-1F45AD2D8C27}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{53416AAC-B748-45B7-90D9-E341A421B7A3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeredeKal.HotelService.Persistence", "services\hotel-service\src\Infrastructure\NeredeKal.HotelService.Persistence\NeredeKal.HotelService.Persistence.csproj", "{41D83D0C-72BD-48E9-B9F7-5891A52809EA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{9192F68D-F30D-4A4D-A294-64C0C45E2088}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeredeKal.HotelService.Domain", "services\hotel-service\src\Core\NeredeKal.HotelService.Domain\NeredeKal.HotelService.Domain.csproj", "{FE4CBD2C-E157-4FB2-AE22-B02594BFB372}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeredeKal.HotelService.Application", "services\hotel-service\src\Core\NeredeKal.HotelService.Application\NeredeKal.HotelService.Application.csproj", "{43363BB6-CDB5-42F2-87F0-3C12BE180ABE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ui", "Ui", "{6D54B65C-CA5C-4F01-A6EB-BDA3EE19818D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeredeKal.HotelService.Api", "services\hotel-service\src\Ui\NeredeKal.HotelService.Api\NeredeKal.HotelService.Api.csproj", "{4666B0CC-C39B-4524-B02D-E933E4F49EB6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{827A7922-A235-4774-A80A-010A1E4DCCDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{827A7922-A235-4774-A80A-010A1E4DCCDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{827A7922-A235-4774-A80A-010A1E4DCCDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{827A7922-A235-4774-A80A-010A1E4DCCDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41D83D0C-72BD-48E9-B9F7-5891A52809EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41D83D0C-72BD-48E9-B9F7-5891A52809EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41D83D0C-72BD-48E9-B9F7-5891A52809EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41D83D0C-72BD-48E9-B9F7-5891A52809EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE4CBD2C-E157-4FB2-AE22-B02594BFB372}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE4CBD2C-E157-4FB2-AE22-B02594BFB372}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE4CBD2C-E157-4FB2-AE22-B02594BFB372}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE4CBD2C-E157-4FB2-AE22-B02594BFB372}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43363BB6-CDB5-42F2-87F0-3C12BE180ABE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43363BB6-CDB5-42F2-87F0-3C12BE180ABE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43363BB6-CDB5-42F2-87F0-3C12BE180ABE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43363BB6-CDB5-42F2-87F0-3C12BE180ABE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4666B0CC-C39B-4524-B02D-E933E4F49EB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4666B0CC-C39B-4524-B02D-E933E4F49EB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4666B0CC-C39B-4524-B02D-E933E4F49EB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4666B0CC-C39B-4524-B02D-E933E4F49EB6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{827A7922-A235-4774-A80A-010A1E4DCCDE} = {89C6B633-201E-4E31-9FC9-91FB41E6BC43}
+		{0CE11E15-B9E7-4A67-9407-8006B6A9718D} = {FBCF7AF8-E6B9-49F5-B0F5-A8B2B83DE2EE}
+		{2089FD17-3847-4C46-AA4E-1F45AD2D8C27} = {0CE11E15-B9E7-4A67-9407-8006B6A9718D}
+		{53416AAC-B748-45B7-90D9-E341A421B7A3} = {2089FD17-3847-4C46-AA4E-1F45AD2D8C27}
+		{41D83D0C-72BD-48E9-B9F7-5891A52809EA} = {53416AAC-B748-45B7-90D9-E341A421B7A3}
+		{9192F68D-F30D-4A4D-A294-64C0C45E2088} = {2089FD17-3847-4C46-AA4E-1F45AD2D8C27}
+		{FE4CBD2C-E157-4FB2-AE22-B02594BFB372} = {9192F68D-F30D-4A4D-A294-64C0C45E2088}
+		{43363BB6-CDB5-42F2-87F0-3C12BE180ABE} = {9192F68D-F30D-4A4D-A294-64C0C45E2088}
+		{6D54B65C-CA5C-4F01-A6EB-BDA3EE19818D} = {2089FD17-3847-4C46-AA4E-1F45AD2D8C27}
+		{4666B0CC-C39B-4524-B02D-E933E4F49EB6} = {6D54B65C-CA5C-4F01-A6EB-BDA3EE19818D}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {956982E9-BBCC-4E33-B497-D8F5A87B1A36}
+	EndGlobalSection
+EndGlobal
