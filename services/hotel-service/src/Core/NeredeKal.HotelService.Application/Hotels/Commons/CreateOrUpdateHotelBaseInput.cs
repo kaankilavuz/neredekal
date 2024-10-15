@@ -14,6 +14,6 @@ namespace NeredeKal.HotelService.Application.Hotels.Commons
         [Required]
         [MaxLength(Hotel.ContactSurnameMaxLength)]
         public string ContactSurname { get; init; }
-        public bool IsActive { get; init; }
+        public bool IsActive { get; init; } = true;
     }
 }

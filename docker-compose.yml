@@ -5,13 +5,28 @@ services:
     environment:
       POSTGRES_USER: myuser
       POSTGRES_PASSWORD: mypassword
-      POSTGRES_DB: mydatabase
+      POSTGRES_DB: Hotel
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
       - neredekal-network
     ports:
       - "5432:5432"
+      
+  neredekal.hotelservice.api:
+    build:
+      context: .
+      dockerfile: services/hotel-service/src/Ui/NeredeKal.HotelService.Api/Dockerfile
+    container_name: hotel-service
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5000
+    ports:
+      - "5000:5000"
+    depends_on:
+      - postgres  
+    networks:
+      - neredekal-network
 
 networks:
   neredekal-network:

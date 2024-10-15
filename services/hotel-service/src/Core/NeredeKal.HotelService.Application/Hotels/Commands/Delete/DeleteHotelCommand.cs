@@ -2,8 +2,5 @@
 
 namespace NeredeKal.HotelService.Application.Hotels.Commands.Delete
 {
-    public record DeleteHotelCommand : IRequest<Guid>
-    {
-        public Guid Id { get; init; }
-    }
+    public record DeleteHotelCommand(Guid Id) : IRequest<Guid>;
 }

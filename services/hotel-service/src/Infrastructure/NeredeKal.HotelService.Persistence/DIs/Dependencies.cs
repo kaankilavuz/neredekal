@@ -7,7 +7,7 @@ using NeredeKal.HotelService.Persistence.EntityFrameworkCore.Uow;
 using NeredeKal.SharedKernel.Repositories;
 using NeredeKal.SharedKernel.Uow;
 
-namespace NeredeKal.HotelService.Persistence.EntityFrameworkCore.DIs
+namespace NeredeKal.HotelService.Persistence.DIs
 {
     public static class Dependencies
     {

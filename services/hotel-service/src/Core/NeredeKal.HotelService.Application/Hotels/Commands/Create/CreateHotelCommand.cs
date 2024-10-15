@@ -8,5 +8,8 @@ using System.Threading.Tasks;
 
 namespace NeredeKal.HotelService.Application.Hotels.Commands.Create
 {
-    public record CreateHotelCommand : CreateOrUpdateHotelBaseInput, IRequest<HotelDto>;
+    public record CreateHotelCommand : CreateOrUpdateHotelBaseInput, IRequest<HotelDto>
+    {
+        public CreateContactInformationInput ContactInformation { get; init; }
+    }
 }

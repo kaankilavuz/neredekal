@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using NeredeKal.HotelService.Persistence.EntityFrameworkCore.Interceptors;
 
 namespace NeredeKal.HotelService.Persistence.EntityFrameworkCore
 {
@@ -15,7 +16,7 @@ namespace NeredeKal.HotelService.Persistence.EntityFrameworkCore
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql(Configuration.GetConnectionString("Default"));
+            optionsBuilder.UseNpgsql(Configuration.GetConnectionString("Default")).AddInterceptors(new SaveChangesInterceptor());
             base.OnConfiguring(optionsBuilder);
         }
 

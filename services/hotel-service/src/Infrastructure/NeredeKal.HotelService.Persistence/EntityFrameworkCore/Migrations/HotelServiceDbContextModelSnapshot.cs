@@ -68,6 +68,66 @@ namespace NeredeKal.HotelService.Persistence.EntityFrameworkCore.Migrations
 
                     b.ToTable("AppHotels", (string)null);
                 });
+
+            modelBuilder.Entity("NeredeKal.HotelService.Domain.Aggregates.Hotels.Hotel", b =>
+                {
+                    b.OwnsOne("NeredeKal.HotelService.Domain.ValueObjects.ContactInformation", "ContactInformation", b1 =>
+                        {
+                            b1.Property<Guid>("HotelId")
+                                .HasColumnType("uuid");
+
+                            b1.Property<string>("Email")
+                                .IsRequired()
+                                .HasMaxLength(100)
+                                .HasColumnType("character varying(100)");
+
+                            b1.Property<string>("Phone")
+                                .IsRequired()
+                                .HasMaxLength(15)
+                                .HasColumnType("character varying(15)");
+
+                            b1.HasKey("HotelId");
+
+                            b1.ToTable("AppHotels");
+
+                            b1.WithOwner()
+                                .HasForeignKey("HotelId");
+                        });
+
+                    b.OwnsOne("NeredeKal.HotelService.Domain.ValueObjects.Location", "Location", b1 =>
+                        {
+                            b1.Property<Guid>("HotelId")
+                                .HasColumnType("uuid");
+
+                            b1.Property<string>("Address")
+                                .IsRequired()
+                                .HasMaxLength(300)
+                                .HasColumnType("character varying(300)");
+
+                            b1.Property<string>("City")
+                                .IsRequired()
+                                .HasMaxLength(100)
+                                .HasColumnType("character varying(100)");
+
+                            b1.Property<string>("District")
+                                .IsRequired()
+                                .HasMaxLength(100)
+                                .HasColumnType("character varying(100)");
+
+                            b1.HasKey("HotelId");
+
+                            b1.ToTable("AppHotels");
+
+                            b1.WithOwner()
+                                .HasForeignKey("HotelId");
+                        });
+
+                    b.Navigation("ContactInformation")
+                        .IsRequired();
+
+                    b.Navigation("Location")
+                        .IsRequired();
+                });
 #pragma warning restore 612, 618
         }
     }

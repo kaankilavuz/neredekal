@@ -11,7 +11,7 @@ namespace NeredeKal.SharedKernel.Repositories
     {
         IQueryable<TEntity> AsQueryable();
         Task<TEntity> InsertAsync(TEntity entity, CancellationToken cancellationToken);
-        Task<TEntity> DeleteAsync(TEntity entity, CancellationToken cancellationToken);
+        Task<TEntity> ExecuteDeleteAsync(TEntity entity, CancellationToken cancellationToken);
         Task<TEntity?> FindAsync(TKey key, CancellationToken cancellationToken);
     }
 }

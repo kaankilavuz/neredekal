@@ -1,12 +1,8 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using NeredeKal.HotelService.Application.Hotels.Commons;
 using NeredeKal.HotelService.Domain.Aggregates.Hotels;
 using NeredeKal.SharedKernel.Uow;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NeredeKal.HotelService.Application.Hotels.Commands.Create
 {
@@ -14,32 +10,28 @@ namespace NeredeKal.HotelService.Application.Hotels.Commands.Create
     {
         private IHotelRepository HotelRepository { get; }
         private IUnitOfWork UnitOfWork { get; }
+        private IMapper Mapper { get; }
 
-        public CreateHotelCommandHandler(IHotelRepository hotelRepository, IUnitOfWork unitOfWork)
+        public CreateHotelCommandHandler(IHotelRepository hotelRepository, IUnitOfWork unitOfWork, IMapper mapper)
         {
             HotelRepository = hotelRepository;
             UnitOfWork = unitOfWork;
+            Mapper = mapper;
         }
 
         public async Task<HotelDto> Handle(CreateHotelCommand request, CancellationToken cancellationToken)
         {
-            Hotel hotel = new(request.Name,
-                request.ContactName,
-                request.ContactSurname,
-                true);
+            HotelBuilder hotelBuilder = new();
+            hotelBuilder.WithLocation(request.ContactInformation.City, request.ContactInformation.District, request.ContactInformation.Address)
+                .WithContactInformation(request.ContactInformation.Email, request.ContactInformation.Phone)
+                .WithHotelDetails(request.Name, request.ContactName, request.ContactSurname, request.IsActive);
 
-            await HotelRepository.InsertAsync(hotel, cancellationToken);
+            Hotel hotel = hotelBuilder.Build();
+
+            var createdHotel = await HotelRepository.InsertAsync(hotel, cancellationToken);
             await UnitOfWork.SaveChangesAsync(cancellationToken);
 
-            return new HotelDto
-            {
-                Id = hotel.Id,
-                ContactName = hotel.ContactName,
-                ContactSurname = hotel.ContactSurname,
-                Name = hotel.Name,
-                IsActive = hotel.IsActive,
-                IsDeleted = hotel.IsDeleted
-            };
+            return Mapper.Map<HotelDto>(createdHotel);
         }
     }
 }

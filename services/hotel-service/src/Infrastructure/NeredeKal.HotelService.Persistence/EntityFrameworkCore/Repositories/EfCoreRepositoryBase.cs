@@ -22,7 +22,7 @@ namespace NeredeKal.HotelService.Persistence.EntityFrameworkCore.Repositories
             var entityEntry = await Context.AddAsync(entity, cancellationToken);
             return entityEntry.Entity;
         }
-        public async Task<TEntity> DeleteAsync(TEntity entity, CancellationToken cancellationToken)
+        public async Task<TEntity> ExecuteDeleteAsync(TEntity entity, CancellationToken cancellationToken)
         {
             await Context.Set<TEntity>().Where(w => w.Id.Equals(entity.Id)).ExecuteDeleteAsync(cancellationToken);
             return entity;

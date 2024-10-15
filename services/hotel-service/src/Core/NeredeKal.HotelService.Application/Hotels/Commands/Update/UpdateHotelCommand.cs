@@ -7,6 +7,7 @@ namespace NeredeKal.HotelService.Application.Hotels.Commands.Update
     public record UpdateHotelCommand : CreateOrUpdateHotelBaseInput, IRequest<HotelDto>
     {
         [JsonIgnore]
-        public Guid Id { get; set; } = Guid.Empty;
+        public Guid? Id { get; set; } = null;
+        public CreateContactInformationInput ContactInformation { get; init; }
     }
 }

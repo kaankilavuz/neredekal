@@ -1,6 +1,8 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using NeredeKal.HotelService.Application.Hotels.Commons;
 using NeredeKal.HotelService.Domain.Aggregates.Hotels;
+using NeredeKal.HotelService.Domain.ValueObjects;
 using NeredeKal.SharedKernel.Uow;
 
 namespace NeredeKal.HotelService.Application.Hotels.Commands.Update
@@ -9,19 +11,36 @@ namespace NeredeKal.HotelService.Application.Hotels.Commands.Update
     {
         private IHotelRepository HotelRepository { get; }
         private IUnitOfWork UnitOfWork { get; }
+        private IMapper Mapper { get; }
 
-        public UpdateHotelCommandHandler(IHotelRepository hotelRepository, IUnitOfWork unitOfWork)
+        public UpdateHotelCommandHandler(IHotelRepository hotelRepository, IUnitOfWork unitOfWork, IMapper mapper)
         {
             HotelRepository = hotelRepository;
             UnitOfWork = unitOfWork;
+            Mapper = mapper;
         }
 
         public async Task<HotelDto> Handle(UpdateHotelCommand request, CancellationToken cancellationToken)
         {
-            Hotel? hotel = await HotelRepository.FindAsync(request.Id, cancellationToken);
+            Hotel? hotel = await HotelRepository.FindAsync(request.Id!.Value, cancellationToken);
 
             if (hotel is null)
-                return new HotelDto();
+                throw new NullReferenceException(typeof(Hotel).Name);
+
+            Location location = Location.Create(
+                request.ContactInformation.City,
+                request.ContactInformation.District,
+                request.ContactInformation.Address);
+
+            if (!hotel.Location.Equals(location))
+                hotel.SetLocation(location);
+
+            ContactInformation contactInformation = ContactInformation.Create(
+                request.ContactInformation.Email,
+                request.ContactInformation.Phone);
+
+            if (!hotel.ContactInformation.Equals(contactInformation))
+                hotel.SetContactInformation(contactInformation);
 
             hotel.SetName(request.Name);
             hotel.SetContactName(request.ContactName);
@@ -29,15 +48,7 @@ namespace NeredeKal.HotelService.Application.Hotels.Commands.Update
             hotel.IsActive = request.IsActive;
 
             await UnitOfWork.SaveChangesAsync(cancellationToken);
-            return new HotelDto
-            {
-                Id = hotel.Id,
-                ContactName = hotel.ContactName,
-                ContactSurname = hotel.ContactSurname,
-                Name = hotel.Name,
-                IsActive = hotel.IsActive,
-                IsDeleted = hotel.IsDeleted
-            };
+            return Mapper.Map<HotelDto>(hotel);
         }
     }
 }

@@ -21,9 +21,9 @@ namespace NeredeKal.HotelService.Application.Hotels.Commands.Delete
             Hotel? hotel = await HotelRepository.FindAsync(request.Id, cancellationToken);
 
             if (hotel is null)
-                return Guid.Empty;
-
-            await HotelRepository.DeleteAsync(hotel, cancellationToken);
+                throw new NullReferenceException(nameof(Hotel));
+            //TODO:Soft delete
+            await HotelRepository.ExecuteDeleteAsync(hotel, cancellationToken);
             await UnitOfWork.SaveChangesAsync(cancellationToken);
             return hotel.Id;
         }
