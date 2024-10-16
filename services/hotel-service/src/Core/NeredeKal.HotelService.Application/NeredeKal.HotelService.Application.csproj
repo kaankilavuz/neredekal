@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\shared\NeredeKal.SharedKernel\NeredeKal.SharedKernel.csproj" />
     <ProjectReference Include="..\NeredeKal.HotelService.Domain\NeredeKal.HotelService.Domain.csproj" />
   </ItemGroup>
 
