@@ -1,4 +1,4 @@
-using NeredeKal.HotelService.Api.Routers.Hotels;
+using NeredeKal.HotelService.Api.Middlewares;
 using NeredeKal.HotelService.Application.DIs;
 using NeredeKal.HotelService.Persistence.DIs;
 using NeredeKal.HotelService.Persistence.EntityFrameworkCore.Extensions;
@@ -6,6 +6,8 @@ using NeredeKal.HotelService.Persistence.EntityFrameworkCore.Extensions;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddControllers();
+builder.Services.AddTransient<ExceptionMiddleware>();
 
 builder.Services.AddEntityFrameworkCore()
     .AddUnitOfWork()
@@ -15,6 +17,7 @@ builder.Services.AddMediatR()
     .AddProfiles();
 
 var app = builder.Build();
+app.UseMiddleware<ExceptionMiddleware>();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -23,6 +26,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-HotelRouter.MapHotelRoutes(app);
+app.MapControllers();
 app.Run();
 

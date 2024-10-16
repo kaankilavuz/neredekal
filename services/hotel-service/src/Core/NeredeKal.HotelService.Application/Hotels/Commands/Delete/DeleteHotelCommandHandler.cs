@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using NeredeKal.HotelService.Application.Hotels.Commons;
 using NeredeKal.HotelService.Domain.Aggregates.Hotels;
 using NeredeKal.SharedKernel.Uow;
 
